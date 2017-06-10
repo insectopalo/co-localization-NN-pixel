@@ -32,8 +32,7 @@ shinyUI(fluidPage(
                   )
            ),
            column(9,
-                  column(4, 
-                          plotOutput("raster1")),
+                  column(4, plotOutput("raster1")),
                   column(4, plotOutput("raster2")),
                   column(4, plotOutput("raster3"))
            )
@@ -41,11 +40,27 @@ shinyUI(fluidPage(
   fluidRow(
            column(3,
                   wellPanel(
-                            h3("Display options"),
-                            sliderInput("binwidth", "Bin width:", min = 1, max = 20, value = 1)
+                            h3("Display"),
+                            tags$small(paste0(
+                              "Change the bin width using the slider.")
+                            ),
+                            br(),
+                            br(),
+                            sliderInput("binwidth", "Bin width:", min = 1, max = 20, value = 1),
+                            br()
+                  ),
+                  wellPanel(
+                            h3("Download"),
+                            tags$small(paste0(
+                              "Download the Euclidean distances using the button below.\n",
+                              "To save the histogram generated, click on the gear icon on its top-right corner.")
+                            ),
+                            br(),
+                            br(),
+                            downloadButton("downloadLink", "Download CSV")
                   )
            ),
-           column(9,
+           column(6,
                   ggvisOutput("gghist")
                   #plotOutput("hist")
            )
