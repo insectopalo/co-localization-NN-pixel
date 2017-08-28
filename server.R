@@ -5,6 +5,8 @@ library(tiff)
 library(ggvis)
 library(RANN)
 
+options(shiny.maxRequestSize=100*1024^2)
+
 shinyServer(function(input, output, session) {
 
   # Read in image files or create randoms for init
